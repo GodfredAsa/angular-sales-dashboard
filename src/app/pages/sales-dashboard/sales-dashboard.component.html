@@ -1,0 +1,197 @@
+<!-- dashboard.component.html -->
+<div class="flex h-screen transition-all duration-300 bg-[#ffffff]">
+  <!-- Sidebar -->
+  <aside [ngClass]="collapsed ? 'w-20' : 'w-2/12'"
+    class="bg-[#042313] text-white flex flex-col p-4 space-y-6 transition-all duration-300 pt-16 min-h-full">
+    <!-- Toggle Button -->
+    <button (click)="toggleSidebar()" class="flex items-center space-x-3 hover:text-gray-300" [ngClass]="{
+      'text-white': activeItem === 'home',
+      'text-gray-400': activeItem !== 'home'
+    }">
+      <i class="bi bi-grid text-2xl" [ngClass]="{
+        'text-[#ACDF37] text-4xl': activeItem === 'home',
+        'text-gray-400': activeItem !== 'home'
+      }"></i>
+      <span *ngIf="!collapsed">Home</span>
+    </button>
+
+    <!-- Menu -->
+    <nav class="space-y-4">
+      <a (click)="setActive('analytics')" class="flex items-center space-x-3" [ngClass]="{
+        'text-white': activeItem === 'analytics',
+        'text-gray-400': activeItem !== 'analytics'
+      }">
+        <i class="bi bi-bar-chart text-2xl"
+          [ngClass]="activeItem === 'analytics' ? 'text-[#ACDF37] text-4xl' : 'text-gray-400'"></i>
+        <span *ngIf="!collapsed">Analytics</span>
+      </a>
+
+      <a (click)="setActive('settings')" class="flex items-center space-x-3" [ngClass]="{
+        'text-white': activeItem === 'settings',
+        'text-gray-400': activeItem !== 'settings'
+      }">
+        <i class="fa fa-cog text-2xl"
+          [ngClass]="activeItem === 'settings' ? 'text-[#ACDF37] text-4xl' : 'text-gray-400'"></i>
+        <span *ngIf="!collapsed">Settings</span>
+      </a>
+
+      <a (click)="setActive('profile')" class="flex items-center space-x-3" [ngClass]="{
+        'text-white': activeItem === 'profile',
+        'text-gray-400': activeItem !== 'profile'
+      }">
+        <i class="bi bi-person text-2xl"
+          [ngClass]="activeItem === 'profile' ? 'text-[#ACDF37] text-4xl' : 'text-gray-400'"></i>
+        <span *ngIf="!collapsed">Profile</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 bg-gray-100 p-6 transition-all duration-300 overflow-y-auto">
+    <div class="mt-4 mb-8">
+      <h1 class="text-3xl font-semibold mb-4">Dashboard</h1>
+      <p>A better way to manage sales with care and precision</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-2">
+      <div class="col-span-1 md:col-span-8 bg-white p-6 rounded-xl shadow-none">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+          <sales-trend-card
+            [description]="'Update'"
+            [forecastRate]="'20'"
+            [date]="'20th Feb, 2025'"
+            [viewDetails]="'See Statistics >'"
+            [term]="' 1 Week'">
+          </sales-trend-card>
+          <item-metrics-card
+              [description]="'Net Income'"
+              [value]="120000"
+              [symbol]="'$'"
+              [rate]="'+1.5'"
+              [cssClasses]="'text-[#57be54] font-extrabold'">
+          </item-metrics-card>
+          <item-metrics-card
+              [description]="'Total Returns'"
+              [value]="3000"
+              [symbol]="'$'"
+              [rate]="'+3.5'"
+              [cssClasses]="'text-[#cd4751] font-extrabold'">
+          </item-metrics-card>
+        </div>
+
+        <div class="mt-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-2 px-1">
+            <div class="bg-white h-64 p-3 rounded-xl  border border-[#D9D9D9]">
+              <h2>Transactions </h2>
+
+              <div class="max-w-7xl mx-auto">
+                <div class="bg-white  overflow-hidden">
+                  <table class="min-w-full divide-y">
+                    <!-- Add this around your table rows if not already present -->
+                    <tbody class="space-y-4">
+
+                      <tr class="bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] overflow-hidden">
+                        <td class="py-4 px-6 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <img class="h-10 w-10 rounded-full"
+                              src="https://images.emojiterra.com/mozilla/512px/1f34a.png" alt="Orange" />
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900">Orange</div>
+                              <div class="text-sm text-gray-500">Fruit</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="text-sm font-medium text-gray-900">Akosomo, Ghana</div>
+                          <div class="text-sm text-gray-500">Ghana Farms</div>
+                        </td>
+                        <td class="py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            Active
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] overflow-hidden">
+                        <td class="py-4 px-6 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <img class="h-10 w-10 rounded-full"
+                              src="https://images.emojiterra.com/microsoft/fluent-emoji/15.1/512px/1f351_flat.png" alt="Orange" />
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900">Peach</div>
+                              <div class="text-sm text-gray-500">Fruit</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="text-sm font-medium text-gray-900">Akosomo, Ghana</div>
+                          <div class="text-sm text-gray-500">Ghana Farms</div>
+                        </td>
+                        <td class="py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            Active
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] overflow-hidden">
+                        <td class="py-4 px-6 whitespace-nowrap">
+                          <div class="flex items-center">
+                            <img class="h-10 w-10 rounded-full"
+                              src="https://www.emoji.family/api/emojis/1f34e/noto/png/512" alt="Orange" />
+                            <div class="ml-4">
+                              <div class="text-sm font-medium text-gray-900">Apple</div>
+                              <div class="text-sm text-gray-500">Fruit</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="text-sm font-medium text-gray-900">Akosomo, Ghana</div>
+                          <div class="text-sm text-gray-500">Ghana Farms</div>
+                        </td>
+                        <td class="py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            Active
+                          </span>
+                        </td>
+                      </tr>
+
+
+                      <!-- Repeat this block for other rows -->
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class=" h-64 p-3 rounded-xl  border border-[#D9D9D9]">
+              <h2>Revenue</h2>
+              <div class="pt-0 mt-0">
+                <img src="https://financetrain.sgp1.cdn.digitaloceanspaces.com/27411-chart-2.png" class="w-[61%] items-center m-auto pb-2" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar Card -->
+      <div class="col-span-1 md:col-span-4 bg-white p-6 rounded-xl shadow-md border">
+        <!-- <h2 class=" font-bold mb-2">Categorical Performance </h2> -->
+        <div>
+          <img src="https://docs.tibco.com/pub/spotfire/7.0.1/doc/html/images/bar_chart_example2.png" alt="">
+        </div>
+        <!-- https://www.fast-report.com/public_download/docs/FRBusinessGraphics/online/en/ProgrammerManual/en-US/imgs/Bubble.png -->
+        <div class="mt-8 border border-[#D9D9D9] p-4 rounded-xl" >
+          <h2>Bubble Plot </h2>
+          <img src="https://www.fast-report.com/public_download/docs/FRBusinessGraphics/online/en/ProgrammerManual/en-US/imgs/Bubble.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>

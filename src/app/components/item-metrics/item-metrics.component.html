@@ -1,0 +1,16 @@
+
+<div class="rounded-2xl border border-[#D9D9D9] p-2">
+  <!-- Header -->
+  <div class="flex justify-between text-xl">
+    <small class="pt-0.5 mb-3">{{description}}</small>
+    <i class="bi bi-three-dots"></i>
+  </div>
+  <!-- Value -->
+  <div class="text-center my-2">
+    <span class="text-5xl"><sup class="text-2xl">{{symbol}}</sup>{{value}}</span>
+  </div>
+  <!-- Footer Info -->
+  <div class="px-2 py-3">
+    <p class="text-sm"><span [ngClass]="cssClasses">{{rate}}</span> from last month</p>
+  </div>
+</div>
